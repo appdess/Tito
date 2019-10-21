@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Time Traffic overview by Vince</title>
+        <title>Time Traffic overview</title>
 
 
         <!-- Bootstrap Core CSS -->
