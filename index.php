@@ -94,7 +94,8 @@ $(document).ready(function () {
                 <h5>Version: V2.3</h5>
                 <h5>by Vince :)</h5>
                  <?PHP
-                 echo "Runs on : tito-fe";
+                // echo "Runs on : tito-fe";
+                 echo "Runs on : " . gethostname() . " (" . getHostByName(getHostName()) .")";
 
                                  ?>
                 <br>
