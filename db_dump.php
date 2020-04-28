@@ -10,7 +10,8 @@ $tablename = $ini['tablename'];
 $dbname = $ini['dbname'];
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli("172.31.42.147", $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
