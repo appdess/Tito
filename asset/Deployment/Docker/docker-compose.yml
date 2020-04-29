@@ -17,7 +17,7 @@ services:
     environment:
       TITO-SQL: Tito-SQL
       # The following is used by apache2-foreground to make sure updated pw is passed to config.ini.php
-      MYSQL_ROOT_PASSWORD: Tito2016
+      MYSQL_ROOT_PASSWORD: VMware1!
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 1m30s
@@ -42,11 +42,11 @@ services:
       - tito-nw
     restart: always
     healthcheck:
-      test: "mysql --user=root --password=Tito2016 --database=TitoDB -e 'select count(*) from TitoTable'"
+      test: "mysql --user=admin --password=VMware1! --database=TitoDB -e 'select count(*) from TitoTable'"
       interval: 1s
       retries: 120
     environment:
-      MYSQL_ROOT_PASSWORD: Tito2016
+      MYSQL_ROOT_PASSWORD: VMware1!
     # Uncomment following two lines to allow for local access/troubleshooting
     #ports:
     #  - "3306:3306"
