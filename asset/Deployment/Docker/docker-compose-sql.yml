@@ -1,3 +1,5 @@
+version: '2.3'
+services:
   Tito-SQL:
     #image: vmeoc/tito-sql:V1.5
     build:
@@ -22,7 +24,6 @@
 #removed until automated volume deployment is available
 #    volumes:
 #      - "./data/db:/var/lib/mysql"
-
 networks:
    tito-nw:
     driver: bridge
