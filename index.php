@@ -213,7 +213,8 @@ $(document).ready(function () {
                        <p class="text-muted">
                         <?PHP
                         echo "<br>";
-                        echo "Tito Front End: " . gethostname() . " (" . getHostByName(getHostName()) .")";
+                        # echo "Tito Front End: " . gethostname() . " (" . getHostByName(getHostName()) .")";
+                        echo "Tito Front End: " . getenv('HOSTNAME') ? getenv('HOSTNAME') : gethostname() . " (" . getHostByName(getHostName()) .")";
                         echo "<br>";
                         echo "Tito Back End: " . getenv('TITO-SQL');
                         echo "<br>";

@@ -3,8 +3,7 @@
 // Retrieve variables from config file
 $ini = parse_ini_file("config.ini.php");
 
-#$servername = getenv('TITO-SQL');
-$servername = getenv('TITOSQL');
+$servername = getenv('TITO-SQL');
 $password = $ini['password'];
 $username = $ini['username'];
 $tablename = $ini['tablename'];
