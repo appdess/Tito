@@ -1,4 +1,4 @@
-version: '2.3'
+version: '2.3' # this is just creating a mssql Database on the host so it´s acting as db standalone!
 services:
   Tito-SQL:
     #image: vmeoc/tito-sql:V1.5
