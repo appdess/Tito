@@ -95,7 +95,8 @@ $(document).ready(function () {
                 <h5>by Vince :)</h5>
                  <?PHP
                 // echo "Runs on : tito-fe";
-                 echo "Runs on : " . gethostname() . " (" . getHostByName(getHostName()) .")";
+                // echo "Runs on : " . gethostname() . " (" . getHostByName(getHostName()) .")";
+                echo "Runs on : " . getenv('HOSTNAME') ?: gethostname() . " (" . getHostByName(getHostName()) .")";
 
                                  ?>
                 <br>
