@@ -146,6 +146,8 @@ global $tag_value;
     $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
     $serverIp = "titocache.21xghm.0001.euc1.cache.amazonaws.com";
     $serverPort = 11211;
+    $logLine = "Info: Connecting to Memcached server " . $serverIp . ":" . $serverPort . "";
+    error_log(print_r($logLine, TRUE));
     $result = $memcached->addServer($serverIp, $serverPort);
     if (!$result) {
         $logLine = "Error: Could not add memcached server " . $serverIp . ":" . $serverPort . "";
@@ -157,6 +159,9 @@ global $tag_value;
         $logLine = "Info: Fetched existing data from cache with key " . $dataKey;
         error_log(print_r($logLine, TRUE));
         return json_decode($response);
+    } else {
+        $logLine = "Info: Could not find cache with key " $dataKey;
+        error_log(print_r($logLine, TRUE));
     }
 
     $url = "https://maps.googleapis.com/maps/api/directions/json?origin=" . str_replace(' ', '%20', $origin) . "&destination=" . str_replace(' ', '%20', $dest) . "&departure_time=" . $time . "&traffic_model=pessimistic&key=" . GOOGLE_API_KEY;
@@ -185,6 +190,9 @@ global $tag_value;
         $logLine = "Info: Write data into cache with key " . $dataKey;
         error_log(print_r($logLine, TRUE));
         $memcached->set($dataKey, $response);
+    } else {
+        $logLine = "Info: Error in response, not writing data into cache with key " $dataKey;
+        error_log(print_r($logLine, TRUE));
     }
 
     return $home_response;
