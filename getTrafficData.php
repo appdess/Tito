@@ -154,6 +154,8 @@ global $tag_value;
 
     $response = $memcached->get($dataKey);
     if ($response) {
+        $logLine = "Info: Fetched existing data from cache with key " . $dataKey;
+        error_log(print_r($logLine, TRUE));
         return json_decode($response);
     }
 
@@ -180,6 +182,8 @@ global $tag_value;
 
 #write data to cache if response was valid
     if ($home_response->status === "OK") {
+        $logLine = "Info: Write data into cache with key " . $dataKey;
+        error_log(print_r($logLine, TRUE));
         $memcached->set($dataKey, $response);
     }
 
