@@ -17,10 +17,10 @@ RUN chmod +x /usr/local/bin/apache2-foreground; \
     apt-get clean && rm -rf /var/cache/apt/archives; \
     chmod 755 /tmp/installTracing.sh; \
     /tmp/installTracing.sh; \
-    wget -O /tmp/latest-64bit https://elasticache-downloads.s3.amazonaws.com/ClusterClient/PHP-7.0/latest-64bit \
-    tar -zxvf /tmp/latest-64bit /tmp/ \
-    mv /tmp/artifact/amazon-elasticache-cluster-client.so /usr/local/lib/php/extensions/ \
-    echo "extension=amazon-elasticache-cluster-client.so" | tee --append /usr/local/etc/php/conf.d/memcached.ini \
+    wget -O /tmp/latest-64bit https://elasticache-downloads.s3.amazonaws.com/ClusterClient/PHP-7.0/latest-64bit; \
+    tar -zxvf /tmp/latest-64bit /tmp/; \
+    mv /tmp/artifact/amazon-elasticache-cluster-client.so /usr/local/lib/php/extensions/; \
+    echo "extension=amazon-elasticache-cluster-client.so" | tee --append /usr/local/etc/php/conf.d/memcached.ini; \
     rm -rf /tmp/*;
 
 
