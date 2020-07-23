@@ -140,6 +140,23 @@ global $metric_name;
 global $tag_name;
 global $tag_value;
 
+#fetch data from cache
+    $dataKey = trim(strtolower($origin)) . " - " . trim(strtolower($dest)) . " - " . trim(strtolower($time));
+    $memcached = new Memcached("59c8e1c3-ad33-4600-bad3-1963fe8c4b0f");
+    $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
+    $serverIp = "titocache.21xghm.0001.euc1.cache.amazonaws.com";
+    $serverPort = 11211;
+    $result = $memcached->addServer($serverIp, $serverPort);
+    if (!$result) {
+        $logLine = "Error: Could not add memcached server " . $serverIp . ":" . $serverPort . "";
+        error_log(print_r($logLine, TRUE));
+    }
+
+    $response = $memcached->get($dataKey);
+    if ($response) {
+        return json_decode($response);
+    }
+
     $url = "https://maps.googleapis.com/maps/api/directions/json?origin=" . str_replace(' ', '%20', $origin) . "&destination=" . str_replace(' ', '%20', $dest) . "&departure_time=" . $time . "&traffic_model=pessimistic&key=" . GOOGLE_API_KEY;
 
 #to monitor the google maps call duration_in_traffic
@@ -159,7 +176,14 @@ global $tag_value;
     $time2=microtime(TRUE);
     wavefront(gethostname(), $metric_name,$time2-$time1,$time2, $tag_name, $tag_value);
 
-    return json_decode($response);
+    $home_response = json_decode($response);
+
+#write data to cache if response was valid
+    if ($home_response->status === "OK") {
+        $memcached->set($dataKey, $response);
+    }
+
+    return $home_response;
 }
 
 /**
