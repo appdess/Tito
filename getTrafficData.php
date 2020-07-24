@@ -191,7 +191,7 @@ global $tag_value;
         error_log(print_r($logLine, TRUE));
         $memcached->set($dataKey, $response);
     } else {
-        $logLine = "Info: Error in response, not writing data into cache with key " $dataKey;
+        $logLine = "Info: Error in response, not writing data into cache with key " . $dataKey;
         error_log(print_r($logLine, TRUE));
     }
 
