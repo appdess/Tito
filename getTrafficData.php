@@ -160,7 +160,7 @@ global $tag_value;
         error_log(print_r($logLine, TRUE));
         return json_decode($response);
     } else {
-        $logLine = "Info: Could not find cache with key " $dataKey;
+        $logLine = "Info: Could not find cache with key " . $dataKey;
         error_log(print_r($logLine, TRUE));
     }
 

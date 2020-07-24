@@ -29,18 +29,19 @@ fi
 echo "</IfModule>" >> /etc/apache2/mods-enabled/env.conf
 
 #get Tito code
+
 # if [ -z "$(ls -A /var/www/html)" ]; then
-	git clone https://github.com/appdess/Tito /var/www/html/
-  rm -Rf /var/www/html/asset/Deployment /var/www/html/.gitignore
+#	git clone https://github.com/appdess/Tito /var/www/html/
+#  rm -Rf /var/www/html/asset/Deployment /var/www/html/.gitignore
 # fi
 
 #if the env variable TITO_VERSION is available, then checkout the needed version.
 
-if [ -n "$TITO_VERSION" ]; then
-    cd /var/www/html/
-    git pull
-    git checkout $TITO_VERSION
-fi
+#if [ -n "$TITO_VERSION" ]; then
+#    cd /var/www/html/
+#    git pull
+#    git checkout $TITO_VERSION
+#fi
 
 # apache2 configuration to allow python scripts 
 cat >>/etc/apache2/apache2.conf <<EOF

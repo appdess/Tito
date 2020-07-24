@@ -7,7 +7,7 @@ FROM php:7.3.6-apache-stretch
 COPY apache2-foreground /usr/local/bin/apache2-foreground
 COPY installTracing.sh  /tmp/installTracing.sh
 
-
+# install apache, mysql and tracing
 RUN chmod +x /usr/local/bin/apache2-foreground; \
     apt-get update; \
     # for troubleshooting, can add vim and iputils-ping the following command line
@@ -18,11 +18,16 @@ RUN chmod +x /usr/local/bin/apache2-foreground; \
     chmod 755 /tmp/installTracing.sh; \
     /tmp/installTracing.sh; 
 
+# install elasticcache client
 RUN wget -O /tmp/latest-64bit https://elasticache-downloads.s3.amazonaws.com/ClusterClient/PHP-7.3/latest-64bit; \
     tar -C /tmp/ -zxvf /tmp/latest-64bit; \
     mv /tmp/amazon-elasticache-cluster-client.so /usr/local/lib/php/extensions/no-debug-non-zts-20180731; \
     echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20180731/amazon-elasticache-cluster-client.so" | tee --append /usr/local/etc/php/conf.d/memcached.ini; \
     rm -rf /tmp/*;
+
+# clone app code to apache-directory
+RUN git clone https://github.com/appdess/Tito /var/www/html/; \
+    rm -Rf /var/www/html/asset/Deployment /var/www/html/.gitignore;
 
 
 ENTRYPOINT ["/usr/local/bin/apache2-foreground"]
