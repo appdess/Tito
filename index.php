@@ -203,7 +203,7 @@ $(document).ready(function () {
                     <div class="col-lg-10 col-lg-offset-1 text-center">
                         <h4><strong>Powered by PHP/Bootstrap/Javascript/SDDC</strong>
                         </h4>
-                        VMworld Barcelona
+                        Soon at VMworld ;-)
                         <ul class="list-unstyled">
                             <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">adess@vmware.com</a>
                             </li>
