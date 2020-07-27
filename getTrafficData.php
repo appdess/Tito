@@ -142,7 +142,9 @@ global $tag_value;
 
 #fetch data from cache
     $dataKey = trim(strtolower($origin)) . " - " . trim(strtolower($dest)) . " - " . trim(strtolower($time));
-    $memcached = new Memcached("89c8e1c3-ad33-4600-bad3-1963fe8c4b1f");
+    $dataKey = preg_replace('/\s+/', '', $dataKey);
+    $dataKey = preg_replace('/[\x00-\x1F\x7F]/', '', $dataKey);
+    $memcached = new Memcached();
     $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
     $serverIp = "172.31.22.215";
     $serverPort = 11211;
