@@ -28,12 +28,12 @@ if [ -n "$PROXY_NAME" ]; then
 fi
 echo "</IfModule>" >> /etc/apache2/mods-enabled/env.conf
 
-#get Tito code
+# get Tito code
 
-# if [ -z "$(ls -A /var/www/html)" ]; then
-#	git clone https://github.com/appdess/Tito /var/www/html/
-#  rm -Rf /var/www/html/asset/Deployment /var/www/html/.gitignore
-# fi
+if [ -z "$(ls -A /var/www/html)" ]; then
+git clone https://github.com/appdess/Tito /var/www/html/
+rm -Rf /var/www/html/asset/Deployment /var/www/html/.gitignore
+fi
 
 #if the env variable TITO_VERSION is available, then checkout the needed version.
 

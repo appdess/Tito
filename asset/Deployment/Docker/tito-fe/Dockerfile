@@ -26,8 +26,8 @@ RUN wget -O /tmp/latest-64bit https://elasticache-downloads.s3.amazonaws.com/Clu
     rm -rf /tmp/*;
 
 # clone app code to apache-directory
-RUN git clone https://github.com/appdess/Tito /var/www/html/; \
-    rm -Rf /var/www/html/asset/Deployment /var/www/html/.gitignore;
+# RUN git clone https://github.com/appdess/Tito /var/www/html/; \
+ #   rm -Rf /var/www/html/asset/Deployment /var/www/html/.gitignore;
 
 
 ENTRYPOINT ["/usr/local/bin/apache2-foreground"]
