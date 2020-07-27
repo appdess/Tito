@@ -201,7 +201,7 @@ $(document).ready(function () {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 text-center">
-                        <h4><strong>Powered by PHP/Bootstrap/Javascript/SDDC</strong>
+                        <h4><strong>Powered by PHP/Bootstrap/Javascript/VMware Cloud</strong>
                         </h4>
                         Soon at VMworld ;-)
                         <ul class="list-unstyled">
