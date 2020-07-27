@@ -89,8 +89,8 @@ $(document).ready(function () {
         <!-- Header -->
         <header id="top" class="header">
             <div class="text-vertical-center">
-                <h1>TITO - The App</h1>
-                <h3>Time Traffic Overview</h3>
+                <h1>TITO - Time Traffic Overview</h1>
+                <h3>Modernapps Masterclass Example App</h3>
                 <h5>Save time commuting - hosted on VMC!</h5>
                  <?PHP
                 // echo "Runs on : tito-fe";
