@@ -142,13 +142,13 @@ global $tag_value;
 
 #fetch data from cache
     $dataKey = trim(strtolower($origin)) . " - " . trim(strtolower($dest)) . " - " . trim(strtolower($time));
-    $memcached = new Memcached("59c8e1c3-ad33-4600-bad3-1963fe8c4b0f");
+    $memcached = new Memcached("89c8e1c3-ad33-4600-bad3-1963fe8c4b1f");
     $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
     $serverIp = "titocache.21xghm.0001.euc1.cache.amazonaws.com";
     $serverPort = 11211;
     $logLine = "Info: Connecting to Memcached server " . $serverIp . ":" . $serverPort . "";
     error_log(print_r($logLine, TRUE));
-    $result = $memcached->addServer($serverIp, $serverPort);
+    $result = $memcached->addServer($serverIp, $serverPort) or die ("Could not connect");
     if (!$result) {
         $logLine = "Error: Could not add memcached server " . $serverIp . ":" . $serverPort . "";
         error_log(print_r($logLine, TRUE));
