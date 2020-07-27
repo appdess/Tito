@@ -89,10 +89,9 @@ $(document).ready(function () {
         <!-- Header -->
         <header id="top" class="header">
             <div class="text-vertical-center">
-                <h1>Tito</h1>
+                <h1>TITO - The App</h1>
                 <h3>Time Traffic Overview</h3>
-                <h5>Version: V2.3</h5>
-                <h5>by Vince :)</h5>
+                <h5>Save time commuting - hosted on VMC!</h5>
                  <?PHP
                 // echo "Runs on : tito-fe";
                 // echo "Runs on : " . gethostname() . " (" . getHostByName(getHostName()) .")";
