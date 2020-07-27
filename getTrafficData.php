@@ -144,7 +144,7 @@ global $tag_value;
     $dataKey = trim(strtolower($origin)) . " - " . trim(strtolower($dest)) . " - " . trim(strtolower($time));
     $memcached = new Memcached("89c8e1c3-ad33-4600-bad3-1963fe8c4b1f");
     $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
-    $serverIp = "titocache.21xghm.0001.euc1.cache.amazonaws.com";
+    $serverIp = "172.31.22.215";
     $serverPort = 11211;
     $logLine = "Info: Connecting to Memcached server " . $serverIp . ":" . $serverPort . "";
     error_log(print_r($logLine, TRUE));
