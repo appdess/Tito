@@ -15,6 +15,8 @@ $params = extractParametersFromUrl($needed_params);
 # Appel des googles API, on recupere la date avant et apres pour l'envoyer au tracing
 $time_before=microtime(true);
 $result = getTrafficData($params);
+$logLine = "Info: Google API Requests finished.";
+error_log(print_r($logLine, TRUE));
 $time_after=microtime(true);
 
 
@@ -23,6 +25,8 @@ $home_addr_no_space = str_replace(' ', '', $params['home_addr']);
 $work_addr_no_space = str_replace(' ', '', $params['work_addr']);
 $cmd = "/var/www/html/sendTraces.py " . $time_before . "  " . $time_after . "  " . $home_addr_no_space . "  " . $work_addr_no_space . " > /dev/null 2>/dev/null &";
 $resultat = shell_exec($cmd);
+$logLine = "Info: sendTraces.py finished.";
+error_log(print_r($logLine, TRUE));
 
 
 //------------------------------------------------------------------------------
