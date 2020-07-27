@@ -36,6 +36,8 @@ CreateStats();
 echo "<div class='parallax-container' data-parallax='scroll' data-speed='0.1' data-bleed='50' data-natural-height='223' data-image-src='./asset/img/bg.jpg'>";
 echo "<section>";
 
+$logLine = "Info: Starting displayInfo.";
+error_log(print_r($logLine, TRUE));
 if(!isset($result['error'])){
     displayInfo($result, $home, $home_time, $work);
     }
@@ -49,8 +51,15 @@ DisplayStats();
 echo "</section>";
 echo "</div>";
 
+$logLine = "Info: displayInfo finished.";
+error_log(print_r($logLine, TRUE));
+
 showmap($home, $work);
+$logLine = "Info: showmap finished.";
+error_log(print_r($logLine, TRUE));
 writeintodb();
+$logLine = "Info: writeintodb finished.";
+error_log(print_r($logLine, TRUE));
 //****************************************
 
 function displayInfo($result, $home, $home_time, $work){
