@@ -3,11 +3,11 @@
 /* Create a TCP/IP socket. */
 $wf_proxy_name="127.0.0.1";
 $wf_proxy_port=2878;
-$metric_name="vince1706.test3.metric";
+$metric_name="adess.test.metric";
 $metric_value="100";
 $metric_epoch="1523021479";
-$source_name="vince-France";
-$tag_name="test1";
+$source_name="nue";
+$tag_name="test1234";
 $tag_value="060418";
 
 

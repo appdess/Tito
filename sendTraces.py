@@ -9,7 +9,7 @@ Proxy Wavefront
 Send a trace to wavefront using proxy : 
 docker run -d \
     -e WAVEFRONT_URL=https://vmware.wavefront.com/api/ \
-    -e WAVEFRONT_TOKEN=7xxxxxxxxxxxxxxxxxxxxxxxxxxxx5 \
+    -e WAVEFRONT_TOKEN=708bd32c-3a12-4ebf-96b5-f1b686058c41 \
     -e JAVA_HEAP_USAGE=512m \
     -e WAVEFRONT_PROXY_ARGS="--traceListenerPorts 30000 --histogramDistListenerPorts 40000" \
     -p 2878:2878 \
