@@ -332,6 +332,9 @@ function showmap($home, $work) {
 
 //conversion d'une durée en secondes en format humain
 function secondsToTime($seconds) {
+    if ($seconds == NULL) {
+        $seconds = 0;
+    }
     $dtF = new \DateTime('@0');
     $dtT = new \DateTime("@$seconds");
     $result = $dtF->diff($dtT);
