@@ -23,7 +23,8 @@ $time_after=microtime(true);
 # send traces to wavefront  
 $home_addr_no_space = str_replace(' ', '', $params['home_addr']);
 $work_addr_no_space = str_replace(' ', '', $params['work_addr']);
-$cmd = "/var/www/html/sendTraces.py " . $time_before . "  " . $time_after . "  " . $home_addr_no_space . "  " . $work_addr_no_space . " > /dev/null 2>/dev/null &";
+$time_diff = $time_after - $time_before;
+$cmd = "/var/www/html/sendTracesToPrometheus.py " . $home_addr_no_space . " " . $work_addr_no_space . " " . $time_diff . " > /dev/null 2>/dev/null &";
 $resultat = shell_exec($cmd);
 $logLine = "Info: sendTraces.py finished.";
 error_log(print_r($logLine, TRUE));
@@ -187,7 +188,7 @@ global $tag_value;
 
 #to monitor the google maps call duration_in_traffic
     $time2=microtime(TRUE);
-    wavefront(gethostname(), $metric_name,$time2-$time1,$time2, $tag_name, $tag_value);
+    #wavefront(gethostname(), $metric_name,$time2-$time1,$time2, $tag_name, $tag_value);
 
     $home_response = json_decode($response);
 
