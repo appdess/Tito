@@ -153,11 +153,11 @@ global $tag_value;
     $dataKey = trim(strtolower($origin)) . " - " . trim(strtolower($dest)) . " - " . trim(strtolower($time));
     $dataKey = preg_replace('/\s+/', '', $dataKey);
     $dataKey = preg_replace('/[\x00-\x1F\x7F]/', '', $dataKey);
-    $serverIp = getenv('MEMCACHED_HOST');
+    $serverIp = getenv('TITO_MEMCACHED_HOST');
     $serverPort = 11211;
     $memcached = null;
 
-    if ($serverIp) {
+    if (!empty($serverIp)) {
         $memcached = new Memcached();
         $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
         $logLine = "Info: Connecting to Memcached server " . $serverIp . ":" . $serverPort . "";
@@ -203,7 +203,7 @@ global $tag_value;
 
     $home_response = json_decode($response);
 
-    if ($serverIp) {
+    if (!empty($serverIp)) {
         #write data to cache if response was valid
         if ($home_response->status === "OK") {
             $logLine = "Info: Write data into cache with key " . $dataKey;
