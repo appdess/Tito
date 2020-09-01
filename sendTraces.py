@@ -5,10 +5,12 @@
 import requests
 import logging
 import sys
+import os
 
 logging.basicConfig(level=logging.INFO)
 
 # get input values
+pushgatewayUrl=os.getenv('TITO_PROMETHEUS_PUSHGATEWAY')
 requestDuration=float(sys.argv[1])
 homeAddress=sys.argv[2]
 workAddress=sys.argv[3]
@@ -20,7 +22,7 @@ payload = '\n'.join([
 
 try:
     requests.post(
-        'http://pushgateway-prometheus-pushgateway.default.svc.cluster.local:9091/metrics/job/tito',
+        pushgatewayUrl,
         data=payload)
 except IOError as e:
     logging.exception(f'Could not push request of {url}', e)
