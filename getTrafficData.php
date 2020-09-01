@@ -153,25 +153,32 @@ global $tag_value;
     $dataKey = trim(strtolower($origin)) . " - " . trim(strtolower($dest)) . " - " . trim(strtolower($time));
     $dataKey = preg_replace('/\s+/', '', $dataKey);
     $dataKey = preg_replace('/[\x00-\x1F\x7F]/', '', $dataKey);
-    $memcached = new Memcached();
-    $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
-    $serverIp = "172.31.22.215";
+    $serverIp = getenv('MEMCACHED_HOST');
     $serverPort = 11211;
-    $logLine = "Info: Connecting to Memcached server " . $serverIp . ":" . $serverPort . "";
-    error_log(print_r($logLine, TRUE));
-    $result = $memcached->addServer($serverIp, $serverPort) or die ("Could not connect");
-    if (!$result) {
-        $logLine = "Error: Could not add memcached server " . $serverIp . ":" . $serverPort . "";
-        error_log(print_r($logLine, TRUE));
-    }
+    $memcached = null;
 
-    $response = $memcached->get($dataKey);
-    if ($response) {
-        $logLine = "Info: Fetched existing data from cache with key " . $dataKey;
+    if ($serverIp) {
+        $memcached = new Memcached();
+        $memcached->setOption(Memcached::OPT_CLIENT_MODE, Memcached::DYNAMIC_CLIENT_MODE);
+        $logLine = "Info: Connecting to Memcached server " . $serverIp . ":" . $serverPort . "";
         error_log(print_r($logLine, TRUE));
-        return json_decode($response);
+        $result = $memcached->addServer($serverIp, $serverPort) or die ("Could not connect");
+        if (!$result) {
+            $logLine = "Error: Could not add memcached server " . $serverIp . ":" . $serverPort . "";
+            error_log(print_r($logLine, TRUE));
+        }
+
+        $response = $memcached->get($dataKey);
+        if ($response) {
+            $logLine = "Info: Fetched existing data from cache with key " . $dataKey;
+            error_log(print_r($logLine, TRUE));
+            return json_decode($response);
+        } else {
+            $logLine = "Info: Could not find cache with key " . $dataKey;
+            error_log(print_r($logLine, TRUE));
+        }
     } else {
-        $logLine = "Info: Could not find cache with key " . $dataKey;
+        $logLine = "Error: No memcached server specified. Skipping memcached integration.";
         error_log(print_r($logLine, TRUE));
     }
 
@@ -196,14 +203,16 @@ global $tag_value;
 
     $home_response = json_decode($response);
 
-#write data to cache if response was valid
-    if ($home_response->status === "OK") {
-        $logLine = "Info: Write data into cache with key " . $dataKey;
-        error_log(print_r($logLine, TRUE));
-        $memcached->set($dataKey, $response);
-    } else {
-        $logLine = "Info: Error in response, not writing data into cache with key " . $dataKey;
-        error_log(print_r($logLine, TRUE));
+    if ($serverIp) {
+        #write data to cache if response was valid
+        if ($home_response->status === "OK") {
+            $logLine = "Info: Write data into cache with key " . $dataKey;
+            error_log(print_r($logLine, TRUE));
+            $memcached->set($dataKey, $response);
+        } else {
+            $logLine = "Info: Error in response, not writing data into cache with key " . $dataKey;
+            error_log(print_r($logLine, TRUE));
+        }
     }
 
     return $home_response;

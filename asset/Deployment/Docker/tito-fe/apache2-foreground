@@ -21,7 +21,9 @@ if [ -n "$TITO_SQL_SERVICE_SERVICE_HOST" ]; then
 else
   echo "  SetEnv TITO-SQL Tito-SQL" >> /etc/apache2/mods-enabled/env.conf
 fi
-
+if [ -n "$MEMCACHED_SERVICE_HOST" ]; then
+  echo "  SetEnv MEMCACHED_HOST $MEMCACHED_SERVICE_HOST" >> /etc/apache2/mods-enabled/env.conf
+fi
 if [ -n "$PROXY_NAME" ]; then
   echo "  SetEnv proxy_name $PROXY_NAME" >> /etc/apache2/mods-enabled/env.conf
   echo "  setEnv proxy_port $PROXY_PORT" >> /etc/apache2/mods-enabled/env.conf
