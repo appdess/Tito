@@ -1,5 +1,3 @@
-# Created by Vincent Meoc
-# Create the Tito Back end
 
 FROM mariadb:10.3.13
 
