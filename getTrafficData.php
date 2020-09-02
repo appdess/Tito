@@ -23,10 +23,10 @@ $time_after=microtime(true);
 # send traces to wavefront
 $home_addr_no_space = preg_replace('/\s+/', '', $params['home_addr']);
 $home_addr_no_space = preg_replace('/[\x00-\x1F\x7F]/', '', $home_addr_no_space);
-$home_addr_no_space = utf8_decode($home_addr_no_space);
+#$home_addr_no_space = utf8_decode($home_addr_no_space);
 $work_addr_no_space = preg_replace('/\s+/', '', $params['work_addr']);
 $work_addr_no_space = preg_replace('/[\x00-\x1F\x7F]/', '', $work_addr_no_space);
-$work_addr_no_space = utf8_decode($work_addr_no_space);
+#$work_addr_no_space = utf8_decode($work_addr_no_space);
 $time_diff = $time_after - $time_before;
 # $cmd = "/var/www/html/sendTraces.py " . $time_diff . " " . $home_addr_no_space . " " . $work_addr_no_space . " > /dev/null 2>/dev/null &";
 # $resultat = shell_exec($cmd);
