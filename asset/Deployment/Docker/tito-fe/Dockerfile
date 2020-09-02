@@ -11,7 +11,7 @@ COPY installTracing.sh  /tmp/installTracing.sh
 RUN chmod +x /usr/local/bin/apache2-foreground; \
     apt-get update; \
     # for troubleshooting, can add vim and iputils-ping the following command line
-    apt-get install -y libmcrypt-dev git curl wget; \
+    apt-get install -y libmcrypt-dev git curl wget vim; \
     docker-php-ext-install mysqli pdo_mysql sockets; \
     echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf; a2enconf servername; \
     apt-get clean && rm -rf /var/cache/apt/archives; \
