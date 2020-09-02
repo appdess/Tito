@@ -24,6 +24,9 @@ fi
 if [ -n "$TITO_MEMCACHED_SERVICE_HOST" ]; then
   echo "  SetEnv TITO_MEMCACHED_HOST $TITO_MEMCACHED_SERVICE_HOST" >> /etc/apache2/mods-enabled/env.conf
 fi
+if [ -n "$TITO_PROMETHEUS_PUSHGATEWAY" ]; then
+  echo "  SetEnv TITO_PROMETHEUS_PUSHGATEWAY $TITO_PROMETHEUS_PUSHGATEWAY" >> /etc/apache2/mods-enabled/env.conf
+fi
 if [ -n "$PROXY_NAME" ]; then
   echo "  SetEnv proxy_name $PROXY_NAME" >> /etc/apache2/mods-enabled/env.conf
   echo "  setEnv proxy_port $PROXY_PORT" >> /etc/apache2/mods-enabled/env.conf

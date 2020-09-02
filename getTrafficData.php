@@ -28,9 +28,22 @@ $work_addr_no_space = preg_replace('/\s+/', '', $params['work_addr']);
 $work_addr_no_space = preg_replace('/[\x00-\x1F\x7F]/', '', $work_addr_no_space);
 $work_addr_no_space = utf8_decode($work_addr_no_space);
 $time_diff = $time_after - $time_before;
-$cmd = "/var/www/html/sendTraces.py " . $time_diff . " " . $home_addr_no_space . " " . $work_addr_no_space . " > /dev/null 2>/dev/null &";
-$resultat = shell_exec($cmd);
-$logLine = "Info: sendTraces.py finished.";
+# $cmd = "/var/www/html/sendTraces.py " . $time_diff . " " . $home_addr_no_space . " " . $work_addr_no_space . " > /dev/null 2>/dev/null &";
+# $resultat = shell_exec($cmd);
+# $logLine = "Info: sendTraces.py finished.";
+$payload = join("\n", ['# TYPE tito_request_latency_seconds gauge', 'tito_request_latency_seconds{homeAddress="' . $home_addr_no_space . '",workAddress="' . $work_addr_no_space . '"} ' . $time_diff]) . "\n";
+
+$prometheusUrl = getenv('TITO_PROMETHEUS_PUSHGATEWAY');
+$cURLConnection = curl_init($prometheusUrl);
+curl_setopt($cURLConnection, CURLOPT_POST, 1);
+curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array('Content-Type: text/plain')); 
+
+$apiResponse = curl_exec($cURLConnection);
+curl_close($cURLConnection);
+
+$logLine = "Info: Send metrics to Prometheus finished. API Response: " . $apiResponse;
 error_log(print_r($logLine, TRUE));
 
 
