@@ -89,10 +89,9 @@ $(document).ready(function () {
         <!-- Header -->
         <header id="top" class="header">
             <div class="text-vertical-center">
-                <h1>Tito</h1>
-                <h3>Time Traffic Overview</h3>
-                <h5>Version: V2.3</h5>
-                <h5>by Vince :)</h5>
+                <h1>TITO - Time Traffic Overview</h1>
+                <h3>Modernapps Masterclass Example App</h3>
+                <h5>Save time commuting - hosted on VMC!</h5>
                  <?PHP
                 // echo "Runs on : tito-fe";
                 // echo "Runs on : " . gethostname() . " (" . getHostByName(getHostName()) .")";
@@ -202,11 +201,12 @@ $(document).ready(function () {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 text-center">
-                        <h4><strong>Powered by PHP/Bootstrap/Javascript/SDDC</strong>
+                        <h4><strong>Powered by VMware Cloud + Tanzu + PHP/Bootstrap/Javascript</strong>
                         </h4>
-                        VMworld Barcelona
+                        At VMworld ;-)
                         <ul class="list-unstyled">
                             <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">adess@vmware.com</a>
+                            <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">vmichael@vmware.com</a>
                             </li>
                         </ul>
                         <br>
