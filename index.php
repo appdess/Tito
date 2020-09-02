@@ -90,8 +90,7 @@ $(document).ready(function () {
         <header id="top" class="header">
             <div class="text-vertical-center">
                 <h1>TITO - Time Traffic Overview</h1>
-                <h3>Modernapps Masterclass Example App</h3>
-                <h5>Save time commuting - Running on TKG + VMC!</h5>
+                <h3>Save time commuting - Running on TKG + VMC!</h3>
                  <?PHP
                 // echo "Runs on : tito-fe";
                 // echo "Runs on : " . gethostname() . " (" . getHostByName(getHostName()) .")";
